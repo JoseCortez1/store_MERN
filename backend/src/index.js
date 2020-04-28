@@ -2,7 +2,9 @@ const app = require('./app')
 require('./database')
 
 
-main = async()=>{
+async function main(){
     await app.listen(app.get('port'))
     console.log('Server is on port: ', app.get('port'))
 }
+
+main();
