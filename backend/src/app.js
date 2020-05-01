@@ -15,7 +15,7 @@ app.use(express.json())
 
 
 //routes
-app.use('/API/users', require('./routes/users.js'))
-//app.use('api/products', require('.routes/products'))
+app.use('/api/users', require('./routes/users.js'))
+app.use('/api/products', require('./routes/products'))
 
 module.exports = app
