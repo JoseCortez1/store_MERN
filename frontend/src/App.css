@@ -1,0 +1,80 @@
+
+*,::before,::after{
+  font-family: 'Nunito', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.login_header, .login_header img{
+  max-height: 10vh;
+}
+.login_header{
+  display: flex;
+  justify-content: left;
+  background-color: #e1e1e1;
+}
+.logo{
+  
+  margin-right: 30px;
+  
+}
+.login_header h1{
+  margin-top: 30px;
+  
+}
+.hero{
+  background-image: url("./store.jpg");
+  background-position: right;
+  height: 90vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-left: 25%;
+}
+.body_page{
+  background: linear-gradient(180deg, #C8DAF2 0%, rgba(255, 255, 255, 0) 33.85%), #EEEEEE;
+  height: 90vh;
+  width: 100%;
+
+}
+@media (min-width: px){
+  
+}
+.container{
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  transform: translate(-100%, -50%);
+  
+}
+
+.card_singin{
+  padding: 30px;
+  height: 40vh;
+  width: 30vw;
+  border-radius: 7px;
+  background-color: #E1DFDF;
+}
+.card_singin input{
+  text-align: center;
+  display: block;
+  background-color: white;
+  width: 90%;
+  font-size: 1.2rem;
+  border:none;
+  margin-top: 20px;
+  padding: 5px 10px;
+}
+.btn{
+  width: 95%;
+  display: block;
+  border: none;
+  padding: 10px 20px;
+  margin-top: 20px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.btn-singin{
+  margin-top: 40px;
+  background-color: #82D38F;
+}
