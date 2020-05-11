@@ -7,7 +7,7 @@ const cors = require('cors')
 
 
 //settings
-app.set('port', 4000)
+app.set('port', process.env.PORT || 3500)
 
 //middlewares
 app.use(cors())

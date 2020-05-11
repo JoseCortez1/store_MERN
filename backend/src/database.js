@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 //Conexion a mongoose 
 
 
-const URI = ('mongodb://localhost/storeMERN')
+const URI = (process.env.MONGO_URI || 'mongodb://localhost/dbTest')
 //Creamos una variable para gaurdar la direccion de la URI
 
 

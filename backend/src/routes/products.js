@@ -2,16 +2,16 @@ const { Router } = require("express")
 
 const router = Router()
 
-
+const verifyToken =  require('../controllers/verifyToken')
 const {getProduct, getProducts, createProduct, deleteProduct, updateProduct} = require('../controllers/products.controllers')
 
 
 router.route('/')
-    .get(getProducts)
-    .post(createProduct)
+    .get(verifyToken,getProducts)
+    .post(verifyToken,createProduct)
 router.route('/:id')
-    .get(getProduct)
-    .delete(deleteProduct)
-    .put(updateProduct)
+    .get(verifyToken,getProduct)
+    .delete(verifyToken,deleteProduct)
+    .put(verifyToken,updateProduct)
 
 module.exports = router

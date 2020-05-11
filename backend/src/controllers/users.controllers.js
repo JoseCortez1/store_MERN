@@ -1,63 +1,63 @@
 const userCtrl = {}
 
-const  bcrypt = require('bcrypt-nodejs')
+
 const User = require('../models/User')
+const jwt = require('jsonwebtoken')
+const verifyToken =  require('../controllers/verifyToken')
 
 userCtrl.getUsers = async (req, res)=>{
     const results = await User.find()
     res.json(results);
 }
-userCtrl.updateUser = async(req, res)=>{
-    const userFound = req.body
-    const id = req.params.id
-    try {
-
-        await bcrypt.genSalt(10, async function(err, salt){
-            if(err){
-                console.log(err);
-            }
-            await bcrypt.hash(userFound.password, salt, null, function(err, hash){               
-                if(err){
-                    console.log(err);
-                }
-                console.log(hash);
-                userFound.password = hash
-                console.log(userFound.password);
-
-            })
-        })
-        console.log(userFound)
-        //Buscar al usuario para actualizar y mandarle el objeto de usuario a actualizar 
-        await User.findByIdAndUpdate(id,userFound)
+userCtrl.getUser = async(req,res)=>{    
+    console.log(req.decoded);
+    const user = await User.findById(req.decoded.id)
+    console.log("user in getUSer", user)
+    if(!user){
         res.json({
-            message:"OK"
+            message:"User doesn't found"
         })
-    } catch (error) {
-        console.log(error)
     }
+    user.password = ''
+    res.json(user)
+}
+userCtrl.updateUser = async(req, res)=>{
+    try{
+        const body = req.body
+        const id = req.params.id
+        var user = await User.findById(id)
+        if(body.password != user.password){
+            await user.encryptPassword(body.password)
+        }
+        user.userName = body.userName
+
+        await User.findByIdAndUpdate(id,user)
+    }
+    catch(e){
+        console.log(e);
+        res.status(404).json({
+            message:" Query Error"
+        })
+    }
+    res.json({
+        message: "User updated"
+    })
 
 }
 userCtrl.createUser = async(req, res)=>{
     const body = req.body
     try{
         const newUser = new User(body)
-        bcrypt.genSalt(10, function(err, salt){
-            if (err) {
-                return next(err);
-            }
-            bcrypt.hash(body.password, salt,null, function(err, hash){
-                if(err){
-                    return next(err)
-                }
-                newUser.password = hash;
-            })
-        });
+        await newUser.encryptPassword(body.password)
         await newUser.save();
         res.json({
             message: "user saved"
         })
     }catch(e){
         console.log(e)
+        res.status(404).json({
+            message:" Query Error"
+        })
     }
     
 }
@@ -67,28 +67,33 @@ userCtrl.deleteUser = async(req, res)=>{
         message: "user deleted"
     }) 
 }
-userCtrl.loginUser = async (req, res)=>{
-    const userFind = req.body;
-    const results = await User.find()
-    let passFound = {}
-    results.forEach((user)=>{
-        if(userFind.userName === user.userName){
-            passFound = user
-        }
-    })
-    bcrypt.compare(userFind.password,passFound.password, (err, result)=>{
-        if(result){
-            res.json({
-                message:"OK",
-                user: passFound
-            })
-        }else{
-            res.json({
-                message:"Error"
-            })
-        }
+userCtrl.loginUser = async (req, res, next )=>{
+    try{
+        const {userName, password} = req.body;
         
-    })
+        const results = await User.findOne({userName})
+        if(!results){
+            return res.status(401).json({
+                message:"User doesn't found"
+            })
+        }
+        const loginCorrect = await results.verifyPassword(password)
+    
+        if(!loginCorrect){
+            return res.status(401).json({
+                message:"Password incorrect"
+            })
+        }
+        const token = jwt.sign({id: results._id}, process.env.SECRET_TOKEN,{
+            expiresIn: 60*60*3
+        })
+        res.json({
+            message:"Login",
+            token
+        })
+    }catch(e){
+        next(e)
+    }
 }
 
 

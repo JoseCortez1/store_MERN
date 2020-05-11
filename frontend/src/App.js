@@ -4,13 +4,15 @@ import './App.css';
 
 import Login from './components/Login'
 import Main from './components/Main'
+import Me from './components/Me'
 
 function App() {
   return (
     <BrowserRouter>
       <Switch>
         <Route path="/" exact component={Login} />
-        <Route path="/main/:id" component={Login} />
+        <Route path="/Me" exact component={Me} />
+        <Route path="/main/:id" component={Main} />
       </Switch>
     </BrowserRouter>
    
@@ -18,3 +20,4 @@ function App() {
 }
 
 export default App;
+

@@ -1,12 +1,17 @@
 import React, { Component } from 'react'
 
 export default class Navigation extends Component {
+
+    constructor(props){
+        super(props);
+
+    }
     render() {
+        
         return (
             <div>
                 <nav>
-                    <a href="#">Products</a>
-                    <a href="#">Contact</a>
+                    <a onClick={this.props.logOut}>LogOut</a>
                 </nav>
             </div>
         )

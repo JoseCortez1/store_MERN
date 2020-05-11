@@ -1,15 +1,17 @@
 const {Router} = require('express')
 const  router = Router();
 
-const {loginUser, createUser, getUsers, deleteUser, updateUser} = require('../controllers/users.controllers')
+const verifyToken =  require('../controllers/verifyToken')
+const {getUser,loginUser, createUser, getUsers, deleteUser, updateUser} = require('../controllers/users.controllers')
 
 router.route('/')
-    .get(getUsers)
-    .post(createUser)
+    .get(verifyToken,getUsers)
+    .post(verifyToken, createUser)
 router.route('/:id')
-    .delete(deleteUser)
-    .put(updateUser)
+    .delete(verifyToken,deleteUser)
+    .put(verifyToken,updateUser)
 router.route('/login/')
+    .get(verifyToken,getUser)
     .post(loginUser)
 
 

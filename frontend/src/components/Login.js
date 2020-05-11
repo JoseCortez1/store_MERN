@@ -1,12 +1,16 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
 import logo from "../logo.png";
 export default class Login extends Component {
-    state = {
-        username: "",
-        password: "",
+    constructor(props){
+        super(props);
+
+        this.state = {
+            username: "",
+            password: "",
+        }
     }
+    
     changeValues = (e) => {
         this.setState({
             [e.target.name]: e.target.value,
@@ -18,12 +22,10 @@ export default class Login extends Component {
             userName: this.state.username,
             password: this.state.password
         })
-        console.log(this.state)
         const res = await axios.post("http://localhost:4000/api/users/login/", findUser)
-        console.log(res.data.message)
-        if(res.data.message === "OK"){
-            const id= res.data.user._id
-            window.location.href = "/other/" + id
+        if(res.data.message === "Login"){
+            localStorage.setItem('x-access-token', res.data.token)
+            this.props.history.push('/Me')
         }
 
     };
