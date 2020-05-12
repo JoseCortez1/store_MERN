@@ -2,7 +2,6 @@ const jwt = require('jsonwebtoken')
 function verifyToken(req, res, next){
     try{
         const token = req.headers['x-access-token']
-    
         if(!token){
             return res.status(404).json({
                 message: "Error Token"
@@ -22,7 +21,6 @@ function verifyToken(req, res, next){
         })
         
     }catch(e){
-        console.log(e)
         return {
             message:"Error token"    
         }

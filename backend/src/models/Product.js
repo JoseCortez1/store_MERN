@@ -11,9 +11,13 @@ const productsSchema = new Schema({
         type: Number,
         required: true
     },
-    'description': String
+    'description': String,
+    'fileName':String 
 },{
     timestamps: true
 })
 
+productsSchema.methods.setImgurl= function (fileName){
+    this.fileName = "http://localhost:4000/public/"+ fileName
+}
 module.exports = model('Product', productsSchema)

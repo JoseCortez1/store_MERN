@@ -4,7 +4,6 @@ const Products = require('../models/Product')
 
 productsCtrl.getProducts = async(req, res)=>{
     const products = await  Products.find()
-
     res.json(products)
 }
 
@@ -25,6 +24,8 @@ productsCtrl.deleteProduct = async (req, res)=>{
 
 productsCtrl.createProduct = async (req, res)=>{
     const product = new Products(req.body)
+    
+    product.setImgurl(req.file.filename + ".png");
     await product.save()
     res.json({
         message: "product saved"

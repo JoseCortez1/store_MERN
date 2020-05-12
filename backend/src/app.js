@@ -12,6 +12,7 @@ app.set('port', process.env.PORT || 3500)
 //middlewares
 app.use(cors())
 app.use(express.json())
+app.use('/public', express.static(`${__dirname}/storage/img`))
 
 
 //routes

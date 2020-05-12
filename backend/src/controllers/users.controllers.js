@@ -10,9 +10,7 @@ userCtrl.getUsers = async (req, res)=>{
     res.json(results);
 }
 userCtrl.getUser = async(req,res)=>{    
-    console.log(req.decoded);
     const user = await User.findById(req.decoded.id)
-    console.log("user in getUSer", user)
     if(!user){
         res.json({
             message:"User doesn't found"
@@ -34,7 +32,6 @@ userCtrl.updateUser = async(req, res)=>{
         await User.findByIdAndUpdate(id,user)
     }
     catch(e){
-        console.log(e);
         res.status(404).json({
             message:" Query Error"
         })
@@ -54,7 +51,6 @@ userCtrl.createUser = async(req, res)=>{
             message: "user saved"
         })
     }catch(e){
-        console.log(e)
         res.status(404).json({
             message:" Query Error"
         })
