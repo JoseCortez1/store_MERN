@@ -11,10 +11,10 @@ export default class Products extends Component {
             <React.Fragment>
                 <div>
                     {products.data.map(product=>(
-                        <div >
-                            <button onClick={()=>this.props.deleteUser(product._id)}>Delete</button>
+                        <div key={product._id}>
+                            <button  onClick={()=>this.props.deleteUser(product._id)}>Delete</button>
                         <Product 
-                            key={product._id}
+                            
                             productInfo={product}
                         />
                         </div>

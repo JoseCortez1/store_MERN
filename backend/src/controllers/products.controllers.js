@@ -25,7 +25,7 @@ productsCtrl.deleteProduct = async (req, res)=>{
 productsCtrl.createProduct = async (req, res)=>{
     const product = new Products(req.body)
     
-    product.setImgurl(req.file.filename + ".png");
+    product.setImgurl(req.file.filename);
     await product.save()
     res.json({
         message: "product saved"

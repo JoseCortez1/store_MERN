@@ -6,8 +6,8 @@ const Product = props=>{
         <div>
             <img src={fileName} alt=""/>
             <h3>{productName}</h3>
-            <p>Cost: {cost}</p>
-            <p>Description:</p>
+            <p>Corsto: {cost}</p>
+            <p>Descripcion:</p>
             <p>{description}</p>
         </div>
     )

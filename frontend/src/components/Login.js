@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import logo from "../logo.png";
 export default class Login extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
 
         this.state = {
@@ -10,7 +10,7 @@ export default class Login extends Component {
             password: "",
         }
     }
-    
+
     changeValues = (e) => {
         this.setState({
             [e.target.name]: e.target.value,
@@ -23,7 +23,7 @@ export default class Login extends Component {
             password: this.state.password
         })
         const res = await axios.post("http://localhost:4000/api/users/login/", findUser)
-        if(res.data.message === "Login"){
+        if (res.data.message === "Login") {
             localStorage.setItem('x-access-token', res.data.token)
             this.props.history.push('/Me')
         }
@@ -40,17 +40,23 @@ export default class Login extends Component {
                     <div className="hero"></div>
                     <div className="container">
                         <form onSubmit={this.loginUser} className="card_singin">
-                            <h2>Sing in</h2>
-                            <input
-                                onChange={this.changeValues}
-                                name="username"
-                                type="text"  placeholder="User name" />
-                            <input
-                                name="password"
-                                onChange={this.changeValues}
-                                type="password"  placeholder="password" />
+                            <h2 className="title">Logearse</h2>
+                            <div className="campo">
+                                <label htmlFor="username">Nombre de usuario</label>
+                                <input
+                                    onChange={this.changeValues}
+                                    name="username"
+                                    type="text" placeholder="User name" />
+                            </div>
+                            <div className="campo">
+                                <label htmlFor="username">Nombre de usuario</label>
+                                <input
+                                    name="password"
+                                    onChange={this.changeValues}
+                                    type="password" placeholder="password" />
+                            </div>
                             <button type="submit" className="btn btn-singin">
-                                Sing in
+                                Ingresar
                             </button>
                         </form>
                     </div>

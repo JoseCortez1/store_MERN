@@ -4,6 +4,7 @@ import axios from 'axios'
 
 import  Navigation from './Navigation'
 import Products from './Products'
+import AddProduct from './AddProduct'
 export default class Me extends Component {
     constructor(props){
         super(props);
@@ -54,16 +55,20 @@ export default class Me extends Component {
         this.setState({products})
         
     }
-    componentDidMount(){
+    getAll = ()=>{
         this.checkUSer()
         this.getProducts()
+    }
+    componentDidMount(){
+        this.getAll()
     }
     render() {
         return (
             <div>
                 <Navigation logOut={this.logOut}/>
+                <AddProduct getAll = {this.getAll} />
                 <Products products={this.state.products} deleteUser={this.deleteUser}/>
-                <h1>Hi: {this.state.user}</h1>
+                
             </div>
         )
     }

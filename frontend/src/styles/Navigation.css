@@ -1,0 +1,29 @@
+.header_Navigation {
+    display: flex;
+    justify-content: space-between;
+}
+.header_Navigation .logoPar{
+    display: flex;
+    justify-content: space-evenly;
+}
+.header_Navigation .btn-logOut{
+    padding: 10px;
+    color: white;
+    background-color: #43230F;
+    -webkit-box-shadow: -4px 3px 8px -1px rgba(0,0,0,0.97);
+    -moz-box-shadow: -4px 3px 8px -1px rgba(0,0,0,0.97);
+    box-shadow: -4px 3px 8px -1px rgba(0,0,0,0.97);
+    margin: 20px 10px;
+    border-radius: 10px;
+    width: 209px;
+    text-align: center;
+    transition: all 0.1s ease-in-out;
+}
+.header_Navigation .btn-logOut:hover{
+    background-color: rgb(71, 45, 28);
+}
+.header_Navigation .btn-logOut:active{
+    background-color: rgb(71, 45, 28);
+    
+    box-shadow: none;
+}
