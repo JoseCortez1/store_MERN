@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import logo from "../logo.png";
+import {getJwt} from '../helpers/jwt'
 export default class Login extends Component {
     constructor(props) {
         super(props);
@@ -8,6 +9,11 @@ export default class Login extends Component {
         this.state = {
             username: "",
             password: "",
+        }
+    }
+    componentDidMount(){
+        if(getJwt()){
+            this.props.history.push('/Me')
         }
     }
 
@@ -31,13 +37,13 @@ export default class Login extends Component {
     };
     render() {
         return (
-            <div>
+            <div className="hero">
                 <header className="login_header">
                     <img className="logo" src={logo} alt="Logo" />
-                    <h1>Zebra project</h1>
+                    <h1>MERN</h1>
                 </header>
                 <div className="body_page ">
-                    <div className="hero"></div>
+                    
                     <div className="container">
                         <form onSubmit={this.loginUser} className="card_singin">
                             <h2 className="title">Logearse</h2>

@@ -24,15 +24,27 @@ productsCtrl.deleteProduct = async (req, res)=>{
 
 productsCtrl.createProduct = async (req, res)=>{
     const product = new Products(req.body)
-    
-    product.setImgurl(req.file.filename);
-    await product.save()
-    res.json({
-        message: "product saved"
-    })
+    try{
+        product.setImgurl(req.file.filename);
+        const result = await product.save()
+        
+        res.json({
+            message: "product saved"
+        })
+    }catch(e){
+        console.log("error", e)
+        if(e.keyValue){
+            res.json({
+                message: "error",
+                "prducto": e.keyValue.productName
+            })
+        }
+    }
 }
 productsCtrl.updateProduct = async (req, res)=>{
-    await Products.findByIdAndUpdate(req.params.id, req.body)
+    console.log(res.params.id, req.body);
+    const  result  = await Products.findByIdAndUpdate(req.params.id, req.body)
+    console.log(result);
     res.json({
         message: "product updated"
     })

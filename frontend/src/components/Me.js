@@ -5,6 +5,11 @@ import axios from 'axios'
 import  Navigation from './Navigation'
 import Products from './Products'
 import AddProduct from './AddProduct'
+import '../App.css'
+
+import {deleteProducts} from '../helpers/products.functions.js'
+
+
 export default class Me extends Component {
     constructor(props){
         super(props);
@@ -14,60 +19,75 @@ export default class Me extends Component {
             products: []
         }
     }
-    logOut = ()=>{
-        localStorage.removeItem('x-access-token')
-        this.props.history.push('/')
-        
-    }
-    deleteUser = async(id)=>{
-        const jwt = getJwt();
-        if(!jwt){
-            this.props.history.push('/')
-        }
-        console.log("delete")
-        const res = await axios({
-            method:"DELETE",
-            url: "http://localhost:4000/api/products/" + id, 
-            headers:{
-                'x-access-token': jwt
-            }
-        })
-        console.log(res)
-        this.componentDidMount()
-    }
-    checkUSer = async ()=>{
-        const jwt = getJwt();
-        if(!jwt){
-            this.props.history.push('/')
-        }
-        const res = await axios.get(
-            "http://localhost:4000/api/users/login/",
-            {headers: {'x-access-token': jwt} }
-            )
-        this.setState({user: res.data.userName})
-    }
-    getProducts = async()=>{
-        const jwt = getJwt();
-        const products = await axios.get(
-            "http://localhost:4000/api/products", 
-            {headers:{"x-access-token": jwt}}
-            )
-        this.setState({products})
-        
-    }
     getAll = ()=>{
         this.checkUSer()
         this.getProducts()
     }
+    componentWillUnmount(){
+        console.log("Willmoount");
+    }
+
     componentDidMount(){
+        console.log("Dimoount");
         this.getAll()
     }
+     //Users "In this part we use the functionality about Users"
+    logOut = ()=>{
+        localStorage.removeItem('x-access-token')
+        this.props.history.push('/Login')
+        
+    }
+    toProducts = ()=> {
+        this.props.history.push('/Login')
+    }
+    checkUSer = async ()=>{
+        console.log("status")
+        const jwt = getJwt();
+        let res;
+        if(!jwt){
+            this.props.history.push('/Login')
+        }
+        try{
+            res = await axios.get(
+                "http://localhost:4000/api/users/login/",
+                {headers: {'x-access-token': jwt} }
+                )
+            
+        }catch(e){
+            console.log(e)
+            localStorage.removeItem("x-access-token")
+        }
+        if(res.status === 200){
+            this.setState({user: res.data.userName})
+        }
+    
+        
+        
+    }
+
+    //Products "In this part we use the functionality about products"
+    
+   
+    getProducts = async()=>{
+        const products = await axios.get(
+            "http://localhost:4000/api/products")
+        this.setState({products})
+        
+    }
+    editProduct = (id)=>{
+        this.props.history.push('/Product/' + id)
+    }
+    
+   
+    
     render() {
         return (
             <div>
-                <Navigation logOut={this.logOut}/>
-                <AddProduct getAll = {this.getAll} />
-                <Products products={this.state.products} deleteUser={this.deleteUser}/>
+                <Navigation 
+                    logOut={this.logOut} 
+                    toProducts={this.toProducts} />
+                <AddProduct accion={"Añadir"} getAll = {this.getAll} />
+                <Products editProduct={this.editProduct} products={this.state.products} deleteProducts={deleteProducts}/>
                 
             </div>
         )

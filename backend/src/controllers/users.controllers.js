@@ -81,7 +81,7 @@ userCtrl.loginUser = async (req, res, next )=>{
             })
         }
         const token = jwt.sign({id: results._id}, process.env.SECRET_TOKEN,{
-            expiresIn: 60*60*3
+            expiresIn: 60*60*2
         })
         res.json({
             message:"Login",

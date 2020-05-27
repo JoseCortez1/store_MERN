@@ -1,11 +1,12 @@
 #formProduct{
+    margin-top: 75px;
     position: absolute;
     top: 50%;
-    left: 50%;
+    left: 45%;
     transform: translate(-100%, -70%);
     background-color: rgba(107, 77, 63, 0.53);
     padding: 20px 30px;
-    height: 50vh;
+    height: 65vh;
     border-radius: 7px;
     color: white
 }

@@ -1,17 +1,20 @@
-import React, { Component } from 'react'
+import React from 'react'
 import logo from "../logo.png";
 import '../styles/Navigation.css'
 
+
 const Navigation = props=>{
-   
+    
     return (
         <div>
-        <header className="login_header header_Navigation">
+            <header className="login_header header_Navigation">
                     <div className="logoPar">
                         <img className="logo" src={logo} alt="Logo" />
-                        <h1>Zebra project</h1>
+                        <h1>MERN</h1>
+                        
                     </div>
-                    <a className="btn-logOut" onClick={props.logOut}>Cerrar Sesion</a>
+                    <p href="#" className="btn-logOut"  onClick={props.toProducts} >Productos</p>
+                    <p href="#" className="btn-logOut"  onClick={props.logOut}>Cerrar Sesion</p> 
                 </header>
             <nav>
                 

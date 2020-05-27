@@ -7,7 +7,7 @@ const {getProduct, getProducts, createProduct, deleteProduct, updateProduct} = r
 
 
 router.route('/')
-    .get(verifyToken,getProducts)
+    .get(getProducts)
     .post(verifyToken,upload.single('fileName'),createProduct)
 router.route('/:id')
     .get(verifyToken,getProduct)

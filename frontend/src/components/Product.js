@@ -1,14 +1,13 @@
-import React, { Component } from 'react'
+import React from 'react'
 
 const Product = props=>{
     const {productName, cost, description, fileName, _id} = props.productInfo
     return (
-        <div>
-            <img src={fileName} alt=""/>
+        <div className="product" >
+            <img src={fileName} alt="" title={description} onClick={()=>props.editProduct(_id)}/>
             <h3>{productName}</h3>
-            <p>Corsto: {cost}</p>
-            <p>Descripcion:</p>
-            <p>{description}</p>
+            <p>Costo: {cost}</p>
+            <button  onClick={()=>props.deleteProducts(_id)}>Borrar</button>
         </div>
     )
     

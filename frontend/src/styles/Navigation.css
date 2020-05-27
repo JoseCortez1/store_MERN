@@ -6,6 +6,7 @@
     display: flex;
     justify-content: space-evenly;
 }
+
 .header_Navigation .btn-logOut{
     padding: 10px;
     color: white;
@@ -13,13 +14,15 @@
     -webkit-box-shadow: -4px 3px 8px -1px rgba(0,0,0,0.97);
     -moz-box-shadow: -4px 3px 8px -1px rgba(0,0,0,0.97);
     box-shadow: -4px 3px 8px -1px rgba(0,0,0,0.97);
-    margin: 20px 10px;
+    margin: 10px 10px;
     border-radius: 10px;
     width: 209px;
+    height: 20px;
     text-align: center;
     transition: all 0.1s ease-in-out;
 }
 .header_Navigation .btn-logOut:hover{
+    cursor: pointer;
     background-color: rgb(71, 45, 28);
 }
 .header_Navigation .btn-logOut:active{

@@ -11,9 +11,7 @@ function verifyToken(req, res, next){
         
         jwt.verify(token, process.env.SECRET_TOKEN, (err, decoded)=>{
             if(err){
-                return res.status(403).json({
-                    message:"Error en Token"
-                })
+                return res.status(403).json({message:"error token"})
             }
             req.decoded = decoded
             next()
