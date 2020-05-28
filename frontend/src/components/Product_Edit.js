@@ -32,6 +32,7 @@ export default class Product_Edit extends Component {
         this.setState(res.data)
     }
     componentDidMount(){
+       document.getElementsByClassName("product")[0].lastChild.remove()
        this.getAll()
     }
     getAll= ()=>{
@@ -40,14 +41,29 @@ export default class Product_Edit extends Component {
     }
     checkUSer = async ()=>{
         const jwt = getJwt();
+        let res;
         if(!jwt){
             this.props.history.push('/Login')
         }
-        const res = await axios.get(
-            "http://localhost:4000/api/users/login/",
-            {headers: {'x-access-token': jwt} }
-            )
-        this.setState({user: res.data.userName})
+        try{
+            res = await axios.get(
+                "http://localhost:4000/api/users/login/",
+                {headers: {'x-access-token': jwt} }
+                )
+            
+        }catch(e){
+            console.log(e)
+            localStorage.removeItem("x-access-token")
+        }
+        if(res){
+            if(res.status === 200){
+
+                this.setState({user: res.data.userName})
+            }
+        }
+    
+        
+        
     }
 
     render() {

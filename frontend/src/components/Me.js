@@ -57,8 +57,11 @@ export default class Me extends Component {
             console.log(e)
             localStorage.removeItem("x-access-token")
         }
-        if(res.status === 200){
-            this.setState({user: res.data.userName})
+        if(res){
+            if(res.status === 200){
+
+                this.setState({user: res.data.userName})
+            }
         }
     
         

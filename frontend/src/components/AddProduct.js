@@ -60,7 +60,7 @@ export default class AddProduct extends Component {
         form.append('productName', this.state.productName)
         form.append('cost', this.state.cost)
         form.append('description', this.state.description)
-
+        
         if(this.props.accion !== "Actualizar"){
             if(this.state.fileName.name.trim() === ""){
                 alert("No puedes dejar campos vacios")
@@ -78,20 +78,22 @@ export default class AddProduct extends Component {
                 
             }
         }else{
-            if(this.state.fileName.name !== undefined){
-                form.append('fileName', this.state.fileName)
+        
+            if(this.state.fileName !== undefined){
+                 form.append('fileName', this.state.fileName)
             }
-            
-            const res = await axios.put("http://localhost:4000/api/products/" +id,form,
-                                        {
-                                            headers: 
-                                                {"x-access-token": jwt}
-                                            })
+            const res = await axios.put(
+                "http://localhost:4000/api/products/" + id,
+                form,
+                {
+                headers: 
+                    {"x-access-token": jwt}
+                })
             if(res.data.message === "error"){
                 alert(res.data.message)
                 
             }
-            console.log(res.data)
+            
         }
       
         

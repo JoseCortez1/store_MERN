@@ -12,6 +12,6 @@ router.route('/')
 router.route('/:id')
     .get(verifyToken,getProduct)
     .delete(verifyToken,deleteProduct)
-    .put(verifyToken,updateProduct)
+    .put(verifyToken,upload.single('fileName'),updateProduct)
 
 module.exports = router

@@ -7,7 +7,7 @@ const Product = props=>{
             <img src={fileName} alt="" title={description} onClick={()=>props.editProduct(_id)}/>
             <h3>{productName}</h3>
             <p>Costo: {cost}</p>
-            <button  onClick={()=>props.deleteProducts(_id)}>Borrar</button>
+            <button id={"delete-"+_id}  onClick={()=>props.deleteProducts(_id)}>Borrar</button>
         </div>
     )
     
