@@ -13,7 +13,7 @@ export default class Login extends Component {
     }
     componentDidMount(){
         if(getJwt()){
-            this.props.history.push('/Me')
+            this.props.history.push('/')
         }
     }
 
@@ -31,7 +31,7 @@ export default class Login extends Component {
         const res = await axios.post("http://localhost:4000/api/users/login/", findUser)
         if (res.data.message === "Login") {
             localStorage.setItem('x-access-token', res.data.token)
-            this.props.history.push('/Me')
+            this.props.history.push('/')
         }
 
     };

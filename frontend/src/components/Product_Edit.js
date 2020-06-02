@@ -28,11 +28,13 @@ export default class Product_Edit extends Component {
         const jwt = getJwt();
         
         const res = await axios.get("http://localhost:4000/api/products/"+id,  {headers: {'x-access-token': jwt} })
-        console.log(res.data);
         this.setState(res.data)
     }
     componentDidMount(){
-       document.getElementsByClassName("product")[0].lastChild.remove()
+        if(document.getElementsByClassName("product")){
+
+            document.getElementsByClassName("product")[0].lastChild.remove()
+        }
        this.getAll()
     }
     getAll= ()=>{

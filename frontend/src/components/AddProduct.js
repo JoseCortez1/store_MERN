@@ -7,7 +7,7 @@ export default class AddProduct extends Component {
         productName:"",
         cost:"",
         fileName:"",
-        description:""
+        description:[]
     }
    
     componentDidMount(){
@@ -31,9 +31,17 @@ export default class AddProduct extends Component {
         this.setState(res.data)
     }
     changeInput = (e)=>{
-        this.setState({
-            [e.target.id]: e.target.value
-        })
+        if(e.target.id == "description"){
+            let tags = e.target.value.split(",")
+            this.setState({
+                [e.target.id]: tags
+            })
+        }else{
+            this.setState({
+                [e.target.id]: e.target.value
+            })
+
+        }
     }
     changeImage = (e)=>{
         this.setState({
@@ -44,18 +52,16 @@ export default class AddProduct extends Component {
         e.preventDefault();
         const jwt = getJwt()
         const id = this.props.id ;
-        console.log("id en submit", id)
         //Usando el mismo componente tanto como para añadir y crear, usaremos
         //la variable que accion en el prop para ver la accion que realizaremos
         if(this.state.productName.trim() === "" || 
                 this.state.cost === "" ||
-                this.state.description.trim() === ""){
+                this.state.description.length === 0){
                 
                 alert("No puedes dejar campos vacios")
             }
         //Crenado el form ambos lo usaran 
         let form = new FormData();
-        
         //Ya que comparten tres campos en comun los seteamos
         form.append('productName', this.state.productName)
         form.append('cost', this.state.cost)
@@ -76,6 +82,8 @@ export default class AddProduct extends Component {
             if(res.data.message === "error"){
                 alert(`Èl producto ${res.data.prducto} ya se encuentra agregado\n intente con otro nombre`)
                 
+            }else{
+                alert("producto Agregado!")
             }
         }else{
         
@@ -92,6 +100,8 @@ export default class AddProduct extends Component {
             if(res.data.message === "error"){
                 alert(res.data.message)
                 
+            }else{
+                alert("producto Actualizado!")
             }
             
         }
@@ -114,7 +124,7 @@ export default class AddProduct extends Component {
                         <input value={this.state.cost} onChange={this.changeInput} type="number" step="any" id="cost" required/>
                     </div>
                     <div className="campo">
-                        <label htmlFor="description">descripcion</label>
+                        <label htmlFor="description">Etiquetas</label>
                         <textarea value={this.state.description} onChange={this.changeInput} type="textarea" cols="20" row="10" id="description" required/>
                     </div>
                     <div className="campo">

@@ -23,17 +23,18 @@ productsCtrl.deleteProduct = async (req, res)=>{
 }
 
 productsCtrl.createProduct = async (req, res)=>{
-    console.log(req.body)
     const product = new Products(req.body)
     try{
         product.setImgurl(req.file.filename);
+        product.defineTags(req.body.description)
+
         const result = await product.save()
         
         res.json({
+            productNew: product,
             message: "product saved"
         })
     }catch(e){
-        console.log("error", e)
         if(e.keyValue){
             res.json({
                 message: "error",
@@ -43,11 +44,21 @@ productsCtrl.createProduct = async (req, res)=>{
     }
 }
 productsCtrl.updateProduct = async (req, res)=>{
-    console.log("Body ", req.body);
     const result = await Products.findByIdAndUpdate(req.params.id, req.body)
+    result.defineTags(req.body.description)
+    const update = await Products.findByIdAndUpdate(
+        req.params.id, 
+        {
+            description: result.description
+        })
     if(req.file){
         result.setImgurl(req.file.filename)
-        await Products.findByIdAndUpdate(req.params.id, {"fileName":result.fileName})
+        console.log(result)
+        update = await Products.findByIdAndUpdate(
+            req.params.id, 
+            {
+                fileName: result.fileName,
+            })
        
     }
     //El archivo llega modificar solo la direccion de la imagen

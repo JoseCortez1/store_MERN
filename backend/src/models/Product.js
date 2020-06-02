@@ -6,16 +6,23 @@ const productsSchema = new Schema({
         trim:true,
         required:true,
         unique: true
-    },
+    }
+    ,
     "cost":{
         type: Number,
         required: true
     },
-    'description': String,
+    'description': [{
+        type: String
+    }],
     'fileName':String 
 },{
     timestamps: true
 })
+
+productsSchema.methods.defineTags = function(tags){
+    this.description = tags.split(",")
+}
 
 productsSchema.methods.setImgurl= function (fileName){
     this.fileName = "http://localhost:4000/public/"+ fileName
