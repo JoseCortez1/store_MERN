@@ -4,7 +4,7 @@ import logo from '../capstore.svg'
 export default class Navbar extends Component {
     render() {
         return (
-            <nav>
+            <nav className="navbar">
                 <Link to="/Home">
                     <img src={logo} alt="Logo capstore"/>
                 </Link>

@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import Product from './Product'
-import Searchbar from './searchbar'
 
 export default class Products extends Component {
     state={
@@ -68,11 +67,11 @@ export default class Products extends Component {
     render() {
         return (
             <div>
-                <div className="serach">
-                    <label htmlFor="seach">
+                <div className="search">
+                    <label htmlFor="search">
                         Busqueda
                     </label>
-                    <input type="text" name="search" onChange={(e)=> this.searching(e)} value={this.state.search}/>
+                    <input type="text" id="search" onChange={(e)=> this.searching(e)} value={this.state.search}/>
                 </div>
                 
                 <div className="list-caps">

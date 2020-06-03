@@ -1,3 +1,4 @@
+/*Generales*/
 body {
   margin: 0;
   font-family: 'Architects Daughter', BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -11,3 +12,103 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.container{
+  width: 90%;
+  margin: 0 auto;
+}
+/*Navbar*/
+.navbar{
+  background-color: black;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+@media (min-width: 700px){
+  .navbar{
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+  } 
+}
+  .navbar a{
+    color: white;
+    text-decoration: none;
+    padding: 10px 0;
+  }
+/*Footer*/
+.footer{
+  background-color: black;
+  align-items: center;
+  text-align: center;
+}
+.footer footer{
+  color: white
+}
+/* MAIN*/
+.hero img{
+  padding: 20px 0;
+  width: 100%;
+}
+
+
+/* Productos */
+.search{
+  padding: 20px 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+}
+.search input{
+    border-radius: 5px;
+    border: 1px solid black;
+    width: 90%;
+    text-align: center;
+}
+.search input:active{
+  border: 1px solid rgba(30, 63, 107, 0.904);
+  box-shadow: none;
+  
+}
+@media (min-width: 700px){
+  .search{
+    display: block;
+    margin: 0 auto;
+  }
+  .search input{
+    margin: 0 20px;
+    width: 50%;
+  }
+}
+.list-caps{
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(2,1fr);
+}
+
+  .product{
+    position: relative;
+  }
+  .product p{
+    position: absolute;
+    bottom: 0;
+    left: 10%;
+    transform: translate(0, -50%);
+
+  }
+  .product img{
+    width: 100%;
+  }
+  @media (min-width: 480px){
+    .list-caps{
+      grid-template-columns: repeat(3,1fr);
+    }
+  }
+  @media (min-width: 700px){
+    .list-caps{
+      grid-template-columns: repeat(4,1fr);
+    }
+  }
