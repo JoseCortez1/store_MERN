@@ -49,7 +49,7 @@ export default class Me extends Component {
         }
         try{
             res = await axios.get(
-                "http://localhost:4000/api/users/login/",
+                "https://capstorebackend.herokuapp.com/api/users/login/",
                 {headers: {'x-access-token': jwt} }
                 )
             
@@ -73,7 +73,7 @@ export default class Me extends Component {
    
     getProducts = async()=>{
         const products = await axios.get(
-            "http://localhost:4000/api/products")
+            "https://capstorebackend.herokuapp.com/api/products")
         this.setState({products})
         
     }

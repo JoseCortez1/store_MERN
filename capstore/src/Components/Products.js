@@ -31,8 +31,7 @@ export default class Products extends Component {
         if(this.state.search !== ""){
             let productsFound = []
             this.state.products.map(product=>{
-                console.log()
-                if(product.description.find( tag => this.state.search === tag) !== undefined){
+                if(product.description.find( tag => this.state.search.toLowerCase() == tag.toLowerCase()) !== undefined){
                     productsFound.push(product)
                 }
             })
@@ -50,7 +49,7 @@ export default class Products extends Component {
     }
     getProducts = async()=>{
         try{
-            const res = await axios.get("http://localhost:4000/api/products")
+            const res = await axios.get("https://capstorebackend.herokuapp.com/api/products/")
             if(res){
                 this.setState({ products: res.data})
                 console.log(this.state.products)

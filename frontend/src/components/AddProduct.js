@@ -26,7 +26,7 @@ export default class AddProduct extends Component {
         }
         const jwt = getJwt();
         
-        const res = await axios.get("http://localhost:4000/api/products/"+id,  {headers: {'x-access-token': jwt} })
+        const res = await axios.get("https://capstorebackend.herokuapp.com/api/products/"+id,  {headers: {'x-access-token': jwt} })
         console.log(res.data);
         this.setState(res.data)
     }
@@ -74,7 +74,7 @@ export default class AddProduct extends Component {
             document.getElementById("formProduct").reset();
             form.append('fileName', this.state.fileName)
             
-            const res = await axios.post("http://localhost:4000/api/products/",form,
+            const res = await axios.post("https://capstorebackend.herokuapp.com/api/products/",form,
                                         {
                                             headers: 
                                                 {"x-access-token": jwt}
@@ -91,7 +91,7 @@ export default class AddProduct extends Component {
                  form.append('fileName', this.state.fileName)
             }
             const res = await axios.put(
-                "http://localhost:4000/api/products/" + id,
+                "https://capstorebackend.herokuapp.com/api/products/" + id,
                 form,
                 {
                 headers: 

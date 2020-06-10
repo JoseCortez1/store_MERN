@@ -27,7 +27,7 @@ export default class Product_Edit extends Component {
         }
         const jwt = getJwt();
         
-        const res = await axios.get("http://localhost:4000/api/products/"+id,  {headers: {'x-access-token': jwt} })
+        const res = await axios.get("https://capstorebackend.herokuapp.com/api/products/"+id,  {headers: {'x-access-token': jwt} })
         this.setState(res.data)
     }
     componentDidMount(){
@@ -49,7 +49,7 @@ export default class Product_Edit extends Component {
         }
         try{
             res = await axios.get(
-                "http://localhost:4000/api/users/login/",
+                "https://capstorebackend.herokuapp.com/api/users/login/",
                 {headers: {'x-access-token': jwt} }
                 )
             

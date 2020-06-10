@@ -11,7 +11,7 @@ export const deleteProducts = async(id)=>{
         try{
             await axios({
                 method:"DELETE",
-                url: "http://localhost:4000/api/products/" + id, 
+                url: "https://capstorebackend.herokuapp.com/api/products/" + id, 
                 headers:{
                     'x-access-token': jwt
                 }

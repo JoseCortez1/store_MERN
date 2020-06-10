@@ -1,7 +1,3 @@
-import React from 'react';
-import {Switch, Route, BrowserRouter as Router} from 'react-router-dom'
-
-
 import './index.css';
 import Main from './Components/Main'
 import Products from './Components/Products'
@@ -9,7 +5,18 @@ import About from './Components/About'
 import Navbar from './Components/Navbar'
 import Footer from './Components/Footer'
 
+import React from 'react';
+import {Switch, Route, BrowserRouter as Router} from 'react-router-dom'
+
+
+
+
+
+
+
+
 function App() {
+  
   return (
     <Router>
       <Navbar/>

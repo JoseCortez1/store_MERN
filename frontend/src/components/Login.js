@@ -28,7 +28,7 @@ export default class Login extends Component {
             userName: this.state.username,
             password: this.state.password
         })
-        const res = await axios.post("http://localhost:4000/api/users/login/", findUser)
+        const res = await axios.post("https://capstorebackend.herokuapp.com/api/users/login/", findUser)
         if (res.data.message === "Login") {
             localStorage.setItem('x-access-token', res.data.token)
             this.props.history.push('/')
