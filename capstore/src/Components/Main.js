@@ -8,9 +8,15 @@ export default class Main extends Component {
                     <img src={Hero} alt=""/>
                 </div>
                 <main className="info-main">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia alias sit nulla fugit ut perspiciatis dolorem animi maiores id, amet tempore maxime hic a repellendus tenetur. Dolor unde labore ea.</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero commodi nam optio. Facere, qui id voluptate, fugit natus quaerat aspernatur deserunt voluptas soluta in porro, dicta ut. Laborum, assumenda quibusdam.</p>
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus asperiores assumenda consequatur iure iusto temporibus veniam minima quos cupiditate modi voluptas sed laboriosam, quasi numquam aperiam repellendus repudiandae. Minima, eum?</p>
+                    <p>
+                        Capstore es una pequeña empresa familiar <br/>
+                        de venta de gorras, con la misión de poder brindarte <br/>
+                        calidad, servicio y un buen precio <br/>
+                         Todo esto al alcance de tu mano, llevando tus pedidos a nuestros puntos establecidos
+                         <a href="./Contacto"> ( Lugares ) </a> <br/>
+                         De igual manera puedes ver nuestra cartera de productos <a href="./Productos"> (Productos)</a> <br/>
+                         Solo pon la caracteristica que buscas en tu gorra
+                    </p>
                 </main>
             </div>
         )

@@ -31,7 +31,7 @@ export default class Products extends Component {
         if(this.state.search !== ""){
             let productsFound = []
             this.state.products.map(product=>{
-                if(product.description.find( tag => this.state.search.toLowerCase() == tag.toLowerCase()) !== undefined){
+                if(product.description.find( tag => this.state.search.toLowerCase() === tag.toLowerCase()) !== undefined){
                     productsFound.push(product)
                 }
             })
@@ -65,12 +65,12 @@ export default class Products extends Component {
     }
     render() {
         return (
-            <div>
+            <div >
                 <div className="search">
                     <label htmlFor="search">
                         Busqueda
                     </label>
-                    <input type="text" id="search" onChange={(e)=> this.searching(e)} value={this.state.search}/>
+                    <input placeholder="Plana" type="text" id="search" onChange={(e)=> this.searching(e)} value={this.state.search}/>
                 </div>
                 
                 <div className="list-caps">

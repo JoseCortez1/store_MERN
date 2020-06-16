@@ -4,6 +4,7 @@ import Products from './Components/Products'
 import About from './Components/About'
 import Navbar from './Components/Navbar'
 import Footer from './Components/Footer'
+import map from './Components/Map'
 
 import React from 'react';
 import {Switch, Route, BrowserRouter as Router} from 'react-router-dom'
@@ -25,6 +26,7 @@ function App() {
         <Route exact path="/"  component={Main}/>
         <Route exact path="/Productos"  component={Products}/>
         <Route exact path="/Contacto"  component={About}/>
+
       </Switch>
       <Footer/>
     </Router>

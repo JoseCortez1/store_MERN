@@ -112,3 +112,87 @@ code {
       grid-template-columns: repeat(4,1fr);
     }
   }
+
+/*  About US*/
+.about{
+  width: 95%;
+  margin: 0 auto;
+  
+}
+  .campo-form label{
+    margin-top: 10px;
+    display: block;    
+    text-align: center;
+  }
+  .campo-form label:last-child{
+    margin-top: auto;
+    
+  }
+  button,.campo-form > input{
+    display: block;
+    align-items: center;
+    width: 90%;
+    padding: 5px;
+    border-radius: 5px;
+    color: black;
+    border: 1px solid black;
+    margin: 5px;
+    text-align: center;
+  }
+  button[type=submit]{
+    margin-top: 20px;
+    width: 94%;
+  }
+
+.about-main{
+  
+  background-color: antiquewhite;
+  padding: 10px;
+}
+  .datos{
+    width: 90%;
+    padding: 10px 0 ;
+    margin: 10px auto;
+  }
+    
+    .contact-button{
+      position: relative;
+      display: block;
+      margin: 10px auto;
+      text-align: center;
+      text-decoration: none;
+      width: 90%;
+      color: black;
+      background-color: white;
+      border: 1px solid black;
+      padding: 5px;
+    }
+      .phone-img{
+        position: absolute;
+        left: 10%;
+        top: 10%;
+        width:20px;
+      }
+    
+
+/*Map */
+.leaflet-container {
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+}
+#map-container{
+  width: 100%;
+  height: 300px;
+}
+
+
+@media (min-width: 900px){
+  .about-main{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+  }
+  .mapa{
+    grid-column: 2/4;
+  }
+}

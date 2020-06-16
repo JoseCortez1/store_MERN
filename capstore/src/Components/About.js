@@ -1,38 +1,41 @@
 import React, { Component } from 'react'
+import phone from '../phone-square-alt-solid.svg'
+import email from '../envelope-square-solid.svg'
+import Mapa from './Map'
+
+
 
 export default class About extends Component {
-    state={
-        nombre:"",
-        telefono:""
-    }
+   
     render() {
         return (
-            <div>
-                <aside>
-                    <form>
-                        <div className="campo-form">
-                            <label htmlFor="nombre">Nombre</label>
-                            <input type="text" id="nombre" placeholder="Nombre ejemplo" value={this.state.nombre}/>
-                        </div>
-                        <div className="campo-form">
-                            <label htmlFor="telefono">Telefono</label>
-                            <input type="number" id="telefono" placeholder="1122334455" value={this.state.telefono}/>
-                        </div>
-                    </form>
-                </aside>
-                <main>
+            <div className="about">
+                
+                <main className="about-main">
                     <div className="datos">
-                        <p>Numero: <span>3333495968</span></p>
-                        <p>Correo: <span>capstore93@gmail.com</span> </p>
+                    
+                        <a className="contact-button" href="tel:3333495968">
+                            <img className="phone-img" src={phone} alt="imagen"/> 
+                            Llamanos
+                        </a>
+                    
+                    
+                        <a className="contact-button" href="mailto:capstore93@gmail.com">
+                            <img className="phone-img" src={email} alt="imagen"/> 
+                            Envianos un correo
+                        </a>                        
+                         
                         <p>Entregamos en:</p>
                         <ul>
                             <li>Plaza San isidro</li>
                             <li>Tren Periferico Norte</li>
                             <li>Gran Terraza Belenes</li>
                         </ul>
-                        <div className="ping-map">
-                            Aqui va un mapa
-                        </div>
+                        
+                        
+                    </div>
+                    <div className="mapa">
+                        <Mapa/>
                     </div>
                 </main>
             </div>
